@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import { Grid, Typography, Toolbar, AppBar, IconButton } from '@material-ui/core';
 import { Menu as MenuIcon } from '@material-ui/icons';
-import AlignedGrid from './AlignedGrid';
-import motd from '../Util/motd';
+import AlignedGrid from '../AlignedGrid';
+import motd from '../../Util/motd';
+import ProfileButton from './ProfileButton';
 
-export interface TopBarProps
+export interface Props
 {
 	toggleDrawer: (side: 'left' | 'top' | 'right' | 'bottom', open?: boolean) => void;
 };
 
-export default class TopBar extends Component<TopBarProps, {}>
+export default class TopBar extends Component<Props, {}>
 {
-	public constructor(props: TopBarProps)
+	public constructor(props: Props)
 	{
 		super(props);
 	}
@@ -34,7 +35,7 @@ export default class TopBar extends Component<TopBarProps, {}>
 					</AlignedGrid>
 					<AlignedGrid align="right">
 						<Typography variant="h6">
-							nyan
+							<ProfileButton />
 						</Typography>
 					</AlignedGrid>
 				</Toolbar>
