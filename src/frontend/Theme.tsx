@@ -8,6 +8,11 @@ export const Theme = createMuiTheme({
 		secondary: {
 			main: '#f44336',
 		}
+	},
+	typography: {
+		fontFamily: 'Roboto',
+		fontSize: 16,
+		fontWeightRegular: "normal"
 	}
 });
 
