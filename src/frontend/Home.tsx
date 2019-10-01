@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import TopBar from './Components/TopBar';
 
 /**
  * @brief Homepage component.
@@ -18,9 +19,9 @@ export default class Home extends Component<{}, {}>
 	public render()
 	{
 		return (
-			<h1>
-				hello!
-			</h1>
+			<>
+				<TopBar />
+			</>
 		);
 	}
 };
