@@ -13,7 +13,7 @@ export default class Home extends Component<{}, {}>
 	
 	public componentDidMount()
 	{
-		document.title = "Home";
+		document.title = "kitter";
 	}
 	
 	public render()
