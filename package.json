@@ -47,6 +47,9 @@
     "dev-frontend": "webpack-dev-server",
     "dev-backend": "tsc-watch --onSuccess 'node .'",
     "build": "yarn build-frontend && yarn build-backend",
-    "dev": "concurrently 'yarn dev-frontend' 'yarn dev-backend'"
+	"dev": "concurrently 'yarn dev-frontend' 'yarn dev-backend'",
+	"start-db": "docker-compose up -d",
+	"connect-db": "mongo",
+	"stop-db": "docker-compose down"
   }
 }

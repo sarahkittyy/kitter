@@ -1,0 +1,7 @@
+version: "3"
+container_name: serverdb
+services:
+  mongo:
+    image: mongo:latest
+    ports:
+    - "27017:27017"
