@@ -3,14 +3,14 @@ import { Container, Divider, Typography } from '@material-ui/core';
 import Option from './Option';
 import { Settings as SettingsIcon } from '@material-ui/icons';
 
-export interface MainDrawerProps {
+export interface Props {
 	
 };
 
 /**
  * @brief The contents of the main left-hand site drawer.
  */
-export default function MainDrawer(props: MainDrawerProps): JSX.Element
+export default function MainDrawer(props: Props): JSX.Element
 {
 	return (
 		<Container fixed style={{paddingLeft: '0', paddingRight: '0', paddingTop: '18px'}}>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from '@material-ui/core';
 import { GridJustification } from '@material-ui/core/Grid';
 
-type AlignedGridProps = {
+type Props = {
 	align: 'left' | 'center' | 'right';
 	children: React.ReactNode;
 };
@@ -10,7 +10,7 @@ type AlignedGridProps = {
 /**
  * @brief Grid justifying content left, center or right.
  */
-export const AlignedGrid = ({ align, children }: AlignedGridProps) => {
+export const AlignedGrid = ({ align, children }: Props) => {
 	let toJustification = (str: 'left' | 'center' | 'right') => {
 		return ({
 			left: 'flex-start',

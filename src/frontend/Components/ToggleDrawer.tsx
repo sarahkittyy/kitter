@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { SwipeableDrawer } from '@material-ui/core';
 
-export interface LeftDrawerProps
+export interface Props
 {
 	open: boolean;
 	toggleDrawer: (open: boolean) => void;
@@ -12,9 +12,9 @@ export interface LeftDrawerProps
 /**
  * @brief Pre-configured sw
  */
-export default class ToggleDrawer extends Component<LeftDrawerProps, {}>
+export default class ToggleDrawer extends Component<Props, {}>
 {
-	public constructor(props: LeftDrawerProps)
+	public constructor(props: Props)
 	{
 		super(props);
 	}

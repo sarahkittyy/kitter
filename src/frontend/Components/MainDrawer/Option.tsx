@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles';
 import { Button, Typography, Grid } from '@material-ui/core';
 import { Settings as SettingsIcon } from '@material-ui/icons';
 
-export interface OptionProps {
+export interface Props {
 	icon?: JSX.Element;
 	name: string;
 	onClick?: () => void;
@@ -12,7 +12,7 @@ export interface OptionProps {
 /**
  * @brief A single ui button to render in an option drawer.
  */
-export default function Option(props: OptionProps): JSX.Element
+export default function Option(props: Props): JSX.Element
 {
 	const style = makeStyles({
 		button: {

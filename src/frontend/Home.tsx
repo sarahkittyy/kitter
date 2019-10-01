@@ -3,7 +3,7 @@ import TopBar from './Components/TopBar';
 import ToggleDrawer from './Components/ToggleDrawer';
 import MainDrawer from './Components/MainDrawer';
 
-export interface HomeState
+export interface State
 {
 	drawer: {
 		left: boolean;
@@ -16,7 +16,7 @@ export interface HomeState
 /**
  * @brief Homepage component.
  */
-export default class Home extends Component<{}, HomeState>
+export default class Home extends Component<{}, State>
 {
 	public constructor(props: React.Props<{}>)
 	{
