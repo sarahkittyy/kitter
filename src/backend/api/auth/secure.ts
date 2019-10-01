@@ -12,6 +12,6 @@ export default function secure(req: express.Request, res: express.Response, next
 	}
 	else
 	{
-		res.status(403).send('Protected Resource');
+		return next('route');
 	}
 }
