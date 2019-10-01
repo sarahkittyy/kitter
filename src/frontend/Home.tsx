@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import TopBar from './Components/TopBar';
 import ToggleDrawer from './Components/ToggleDrawer';
+import MainDrawer from './Components/MainDrawer';
 
 export interface HomeState
 {
@@ -33,7 +34,7 @@ export default class Home extends Component<{}, HomeState>
 	
 	public componentDidMount()
 	{
-		document.title = "kitter";
+		document.title = 'social media for cats';
 	}
 	
 	public toggleDrawer(side: 'left' | 'right' | 'top' | 'bottom', open?: boolean): void {
@@ -65,7 +66,7 @@ export default class Home extends Component<{}, HomeState>
 			<>
 				<TopBar toggleDrawer={(side, open) => this.toggleDrawer(side, open)}/>
 				<ToggleDrawer side="left" toggleDrawer={(open?: boolean) => this.toggleDrawer('left', open)} open={this.state.drawer.left}>
-					<h1>owo</h1>
+					<MainDrawer />
 				</ToggleDrawer>
 			</>
 		);
