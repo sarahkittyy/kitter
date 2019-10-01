@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { Grid } from '@material-ui/core';
 import { GridJustification } from '@material-ui/core/Grid';
 
 type AlignedGridProps = {
 	align: 'left' | 'center' | 'right';
-	children: React.ReactNode
+	children: React.ReactNode;
 };
 
 /**
@@ -18,9 +18,10 @@ export const AlignedGrid = ({ align, children }: AlignedGridProps) => {
 			right: 'flex-end'
 		}[str]) as GridJustification;
 	};
+	
 	return (
 		<Grid container justify={toJustification(align)} alignContent="space-around">
-			{children}
+			{React.Children.map(children, (child) => <Grid item>{child}</Grid> )}
 		</Grid>
 	);
 };
