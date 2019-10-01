@@ -4,27 +4,26 @@ import { Menu as MenuIcon } from '@material-ui/icons';
 import AlignedGrid from './AlignedGrid';
 import motd from '../Util/motd';
 
-export default class TopBar extends Component<{}, {}>
+export interface TopBarProps
 {
-	public constructor(props: React.Props<{}>)
+	toggleDrawer: (side: 'left' | 'top' | 'right' | 'bottom', open?: boolean) => void;
+};
+
+export default class TopBar extends Component<TopBarProps, {}>
+{
+	public constructor(props: TopBarProps)
 	{
 		super(props);
 	}
 	
-	/**
-	 * @brief Toggles the drawer on the given screen edge.
-	 */
-	private toggleDrawer(dir: 'left')
-	{
-	}
-	
 	public render()
 	{
+		const { toggleDrawer } = this.props;
 		return (
 			<AppBar>
 				<Toolbar>
 					<AlignedGrid align="left">
-						<IconButton onClick={() => this.toggleDrawer('left')}>
+						<IconButton onClick={() => toggleDrawer('left')}>
 							<MenuIcon style={{color: 'white'}}/>
 						</IconButton>
 					</AlignedGrid>
