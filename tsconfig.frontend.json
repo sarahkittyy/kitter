@@ -4,8 +4,8 @@
 		"jsx": "react",
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
-		"alwaysStrict": true,
 		"noImplicitAny": true,
+		"sourceMap": true,
 		"outDir": "build"
 	},
 	"exclude": [
