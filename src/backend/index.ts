@@ -1,3 +1,4 @@
+require('dotenv').config();
 import express from 'express';
 import * as path from 'path';
 import appRoot from 'app-root-path';
