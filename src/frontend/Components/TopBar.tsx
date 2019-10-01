@@ -15,11 +15,19 @@ export default class TopBar extends Component<{}, {}>
 			<AppBar>
 				<Toolbar>
 					<AlignedGrid align="left">
-						<Grid item>
-							<Typography variant="h6">
-								nyan desu
-							</Typography>
-						</Grid>
+						<Typography variant="h6">
+							nyan desu
+						</Typography>
+					</AlignedGrid>
+					<AlignedGrid align="center">
+						<Typography variant="h6">
+							nyan
+						</Typography>
+					</AlignedGrid>
+					<AlignedGrid align="right">
+						<Typography variant="h6">
+							nyan
+						</Typography>
 					</AlignedGrid>
 				</Toolbar>
 			</AppBar>
