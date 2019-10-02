@@ -30,7 +30,7 @@ You must start the database and express server, and then open the html file.
 ```bash
 yarn build
 yarn start-db
-node . % # start the express server in the background
+node . & # start the express server in the background
 ```
 
 Now you can open public/index.html in your favorite internet browser.
