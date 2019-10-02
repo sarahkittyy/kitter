@@ -11,6 +11,6 @@ export interface Props
 export default function Auth(props: Props): JSX.Element
 {
 	return (
-		<h5>hi</h5>	
+		<p>owo</p>	
 	);
 }
