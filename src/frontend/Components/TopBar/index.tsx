@@ -10,6 +10,9 @@ export interface Props
 	toggleDrawer: (side: 'left' | 'top' | 'right' | 'bottom', open?: boolean) => void;
 };
 
+/**
+ * @brief The main upper bar atop the screen.
+ */
 export default class TopBar extends Component<Props, {}>
 {
 	public constructor(props: Props)
