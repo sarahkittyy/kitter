@@ -1,5 +1,6 @@
 import express from 'express';
 import secure from './auth/secure';
+import addUser from './auth/db/addUser';
 
 // Main api endpoint (/api)
 const api = express.Router();
@@ -17,7 +18,22 @@ api.get('/verifyAuth', (req, res) => {
 });
 
 api.post('/signup', (req, res) => {
-	
+	const username = req.body.username;
+	const password = req.body.password;
+	if(!username || !password)
+	{
+		res.status(400).send('Invalid username or password');
+	}
+	else
+	{
+		addUser({
+			username: username,
+			password: password
+		}, (success: boolean) => {
+			if(success) res.status(200).send('Successfully added user!');
+			else res.status(500).send('Could not add username / password to database.');
+		})
+	}
 });
 
 api.all('/*', (req, res) => {
