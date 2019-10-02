@@ -10,15 +10,13 @@ export default async function checkLogin(user: User): Promise<boolean>
 {
 	return await dbConnect()
 	.catch(() => false)
-	.then((db: Db) => {
+	.then(async (db: Db) => {
 		const users = db.collection(config.collection);
 		
-		users.findOne(user, (err: MongoError, result: any) => {
-			if(err) return false;
-			
-			console.log(result);
-			return true;	
+		return await users.findOne(user)
+		.catch(() => false)
+		.then((result) => {
+			return <boolean>result;
 		});
-		return false;
 	});
 }
