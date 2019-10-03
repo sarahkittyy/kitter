@@ -10,19 +10,29 @@ export interface Props
 	toggleDrawer: (side: 'left' | 'top' | 'right' | 'bottom', open?: boolean) => void;
 };
 
+export interface State
+{
+	motd: string;	
+};
+
 /**
  * @brief The main upper bar atop the screen.
  */
-export default class TopBar extends Component<Props, {}>
+export default class TopBar extends Component<Props, State>
 {
 	public constructor(props: Props)
 	{
 		super(props);
+		
+		this.state = {
+			motd: motd()
+		};
 	}
 	
 	public render()
 	{
 		const { toggleDrawer } = this.props;
+		const { motd } = this.state;
 		return (
 			<AppBar>
 				<Toolbar>
@@ -33,7 +43,7 @@ export default class TopBar extends Component<Props, {}>
 					</AlignedGrid>
 					<AlignedGrid align="center">
 						<Typography variant="h5">
-							🐈 kitter - {motd()} 🐈
+							🐈 kitter - {motd} 🐈
 						</Typography>
 					</AlignedGrid>
 					<AlignedGrid align="right">
