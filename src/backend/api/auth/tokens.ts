@@ -1,9 +1,25 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
+import { User } from '../auth/db/addUser';
 
 export interface TokenPayload
 {
+	username: string;
+}
+
+/**
+ * @brief Gives the given request's session a signed jwt based on the input user details.
+ */
+export function giveToken(req: express.Request, user: User)
+{
+	let payload: TokenPayload = {
+		username: user.username
+	};
 	
+	req.session.REFRESH_TOKEN = jwt.sign(payload, process.env.SECRET, {
+		expiresIn: '24h'
+	});
+	refreshToken(req);
 }
 
 /**
@@ -54,6 +70,9 @@ export function getToken(req: express.Request): string | undefined
 	}
 }
 
+/**
+ * @brief Tries to refresh the api token using the refresh token. False if no refresh token exists.
+ */
 export function refreshToken(req: express.Request): boolean
 {
 	if(req.session.REFRESH_TOKEN)
@@ -65,7 +84,7 @@ export function refreshToken(req: express.Request): boolean
 			req.session.API_TOKEN = jwt.sign({
 				
 			}, process.env.SECRET, {
-				expiresIn: "8h"
+				expiresIn: "10m"
 			});
 			return true;
 		}

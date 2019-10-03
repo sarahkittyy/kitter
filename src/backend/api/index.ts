@@ -2,6 +2,7 @@ import express from 'express';
 import secure from './auth/secure';
 import addUser from './auth/db/addUser';
 import checkLogin from './auth/checkLogin';
+import { giveToken } from './auth/tokens';
 
 // Main api endpoint (/api)
 const api = express.Router();
@@ -51,6 +52,8 @@ api.post('/login', (req, res) => {
 		.then((exists: boolean) => {
 			if(exists)
 			{
+				// The user submitted valid login details.
+				giveToken(req, {username: username, password: password});
 				res.status(200).send('Logged in!');
 			}
 			else
@@ -59,7 +62,13 @@ api.post('/login', (req, res) => {
 			}
 		});
 	}
-})
+});
+
+api.post('/logout', (req, res) => {
+	req.session.API_TOKEN = undefined;
+	req.session.REFRESH_TOKEN = undefined;
+	res.status(200).send('Successfully logged out.');
+});
 
 api.all('/*', (req, res) => {
 	res.status(404).send('No API endpoint ' + req.method + ' /api' + req.url);
