@@ -24,7 +24,7 @@ api.post('/signup', (req, res) => {
 	const password = req.body.password;
 	if(!username || !password)
 	{
-		res.status(400).send({response: 'Invalid username or password'});
+		res.status(200).send({response: 'Invalid username or password', success: false});
 	}
 	else
 	{
@@ -32,8 +32,8 @@ api.post('/signup', (req, res) => {
 			username: username,
 			password: password
 		}, (success: boolean) => {
-			if(success) res.status(200).send({response: 'Successfully added user!'});
-			else res.status(500).send({response: 'Could not add username / password to database.'});
+			if(success) res.status(200).send({response: 'Successfully added user!', success: true});
+			else res.status(200).send({response: 'Username already exists!', success: false});
 		})
 	}
 });
@@ -44,22 +44,22 @@ api.post('/login', (req, res) => {
 	const password = req.body.password;
 	if(!username || !password)
 	{
-		res.status(400).send({response: 'Invalid username or password'});
+		res.status(200).send({response: 'Invalid username or password', success: false});
 	}
 	else
 	{
 		checkLogin({username: username, password: password})
-		.catch(() => res.send(500).send({response: 'Internal server error.'}))
+		.catch(() => res.send(500).send({response: 'Internal server error.', success: false}))
 		.then((exists: boolean) => {
 			if(exists)
 			{
 				// The user submitted valid login details.
 				giveToken(req, {username: username, password: password});
-				res.status(200).send({response: 'Logged in!'});
+				res.status(200).send({response: 'Logged in!', success: true});
 			}
 			else
 			{
-				res.status(400).send({response: 'Invalid login details.'});
+				res.status(200).send({response: 'Invalid login details.', success: false});
 			}
 		});
 	}
@@ -68,7 +68,7 @@ api.post('/login', (req, res) => {
 api.post('/logout', (req, res) => {
 	req.session.API_TOKEN = undefined;
 	req.session.REFRESH_TOKEN = undefined;
-	res.status(200).send({response: 'Successfully logged out.'});
+	res.status(200).send({response: 'Successfully logged out.', success: true});
 });
 /// All other endpoints are a generic 404 error.
 api.all('/*', (req, res) => {
