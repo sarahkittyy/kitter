@@ -1,4 +1,5 @@
 import React from 'react';
+import { Typography, Button } from '@material-ui/core';
 
 export interface Props
 {
@@ -11,6 +12,13 @@ export interface Props
 export default function NoAuth(props: Props): JSX.Element
 {
 	return (
-		<p>uwu</p>
+		<Button>
+			<Typography 
+				variant="h6"
+				component="p"
+				style={{textTransform: 'none', width: '100%', height: '100%', color: 'white'}}>
+				- login -
+			</Typography>
+		</Button>
 	);
 }
