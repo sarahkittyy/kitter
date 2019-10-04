@@ -11,20 +11,20 @@ api.get('/', [secure], (req: express.Request, res: express.Response) => {
 	res.send('o3o');
 });
 
+/// /api/verifyAuth -> returns {authenticated: true|false}
 api.get('/verifyAuth', [secure], (req: express.Request, res: express.Response) => {
 	res.json({ authenticated: true });
 });
-
 api.get('/verifyAuth', (req, res) => {
 	res.json({ authenticated: false })
 });
-
+/// Attempts to signup to the website using the username and password body params
 api.post('/signup', (req, res) => {
 	const username = req.body.username;
 	const password = req.body.password;
 	if(!username || !password)
 	{
-		res.status(400).send('Invalid username or password');
+		res.status(400).send({response: 'Invalid username or password'});
 	}
 	else
 	{
@@ -32,46 +32,47 @@ api.post('/signup', (req, res) => {
 			username: username,
 			password: password
 		}, (success: boolean) => {
-			if(success) res.status(200).send('Successfully added user!');
-			else res.status(500).send('Could not add username / password to database.');
+			if(success) res.status(200).send({response: 'Successfully added user!'});
+			else res.status(500).send({response: 'Could not add username / password to database.'});
 		})
 	}
 });
-
+/// Attempts to login using existing username and password credentials
+/// If the credentials are valid, adds the refresh and api token to the express session.
 api.post('/login', (req, res) => {
 	const username = req.body.username;
 	const password = req.body.password;
 	if(!username || !password)
 	{
-		res.status(400).send('Invalid username or password');
+		res.status(400).send({response: 'Invalid username or password'});
 	}
 	else
 	{
 		checkLogin({username: username, password: password})
-		.catch(() => res.send(500).send('Internal server error.'))
+		.catch(() => res.send(500).send({response: 'Internal server error.'}))
 		.then((exists: boolean) => {
 			if(exists)
 			{
 				// The user submitted valid login details.
 				giveToken(req, {username: username, password: password});
-				res.status(200).send('Logged in!');
+				res.status(200).send({response: 'Logged in!'});
 			}
 			else
 			{
-				res.status(400).send('Invalid login details.');
+				res.status(400).send({response: 'Invalid login details.'});
 			}
 		});
 	}
 });
-
+/// Detaches the api and refresh tokens from the session.
 api.post('/logout', (req, res) => {
 	req.session.API_TOKEN = undefined;
 	req.session.REFRESH_TOKEN = undefined;
-	res.status(200).send('Successfully logged out.');
+	res.status(200).send({response: 'Successfully logged out.'});
 });
-
+/// All other endpoints are a generic 404 error.
 api.all('/*', (req, res) => {
-	res.status(404).send('No API endpoint ' + req.method + ' /api' + req.url);
+	res.status(404).send({response: 'No API endpoint ' + req.method + ' /api' + req.url});
 });
 
 export default api;
