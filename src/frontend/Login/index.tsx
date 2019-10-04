@@ -3,6 +3,7 @@ import { Typography, Paper, Button, TextField, Divider } from '@material-ui/core
 import { makeStyles } from '@material-ui/styles';
 import AlignedGrid from '../Components/AlignedGrid';
 import login from '../API/login';
+import signup from '../API/signup';
 import { Redirect } from 'react-router-dom';
 
 export interface Props
@@ -63,6 +64,25 @@ export default class Login extends Component<Props, State>
 		});
 	}
 	
+	private signUp()
+	{
+		const username: string = this.username.current.value;
+		const password: string = this.password.current.value;
+		
+		signup(username, password)
+		.catch((e) => alert(e))
+		.then((resp: any) => {
+			if(resp.success)
+			{
+				this.submit();
+			}
+			else
+			{
+				alert(resp.response);
+			}
+		})
+	}
+	
 	public render()
 	{
 		return (
@@ -85,8 +105,11 @@ export default class Login extends Component<Props, State>
 					</TextField>
 				</AlignedGrid>
 				<AlignedGrid align='center'>
-					<Button onClick={() => this.submit()} style={{alignSelf: 'center', margin: 'auto'}}>
-						Submit
+					<Button onClick={() => this.submit()} style={{border: '1px solid #ddd', borderRadius: '4', padding: '4px', margin: '8px'}}>
+						log in
+					</Button>
+					<Button onClick={() => this.signUp()} style={{border: '1px solid #ddd', borderRadius: '4', padding: '4px', margin: '8px'}}>
+						sign up
 					</Button>
 				</AlignedGrid>
 			</Paper>
