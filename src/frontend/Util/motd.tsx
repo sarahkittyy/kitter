@@ -7,9 +7,9 @@ export default function motd(): string
 		'release ur inner cate',
 		'release ur inner kitty',
 		'headpats are cozy',
-		'so basically im baby',
-		'please pet me',
-		'mew >w<'
+		'give cats pats',
+		'meow >w<',
+		'uwu'
 	];
 	return motds[Math.floor(Math.random() * motds.length)];
 }
