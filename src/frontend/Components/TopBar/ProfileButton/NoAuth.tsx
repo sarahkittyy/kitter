@@ -38,7 +38,7 @@ export default class NoAuth extends Component<Props, State>
 					- login -
 				</Typography>
 			</Button>
-			{this.state.redirectToLogin ? <Redirect to="/login"/> : ''}
+			{this.state.redirectToLogin ? <Redirect push to="/login"/> : ''}
 		</>
 		);	
 	}
