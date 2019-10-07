@@ -3,7 +3,7 @@ import $ from 'jquery';
 /**
  * @brief Calls the logout api, dissociating the API tokens.
  */
-export default async function logout(username: string, password: string): Promise<object>
+export default async function logout(): Promise<object>
 {
 	return await $.ajax({
 		method: 'POST',
